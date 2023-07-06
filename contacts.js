@@ -59,10 +59,27 @@ const simpanContact = (nama, email, noHp) => {
 // Tampil list nama dan nomor hp
 const listContacts = () => {
   const contacts = loadContacts();
+
   console.log(chalk.bold.green("Daftar Kontak: \n"));
   contacts.forEach((contact, index) => {
     console.log(`${index + 1}. Nama : ${contact.nama} \n   Nomor Handphone : ${contact.noHp} `);
   });
 };
 
-module.exports = { simpanContact, listContacts };
+// tampil detail
+const detailContact = (nama) => {
+  const contacts = loadContacts();
+
+  contacts.forEach((contact, i) => {
+    if (contact.nama.toLowerCase() === nama.toLowerCase()) {
+      console.log(chalk.bold.green("Detail Kontak: \n"));
+      if (contact.email === undefined) {
+        console.log(`Nama : ${contact.nama} \nEmail : User ini tidak memiliki email \nNomor Handphone : ${contact.noHp} `);
+      } else console.log(`Nama : ${contact.nama} \nEmail : ${contact.email} \nNomor Handphone : ${contact.noHp} `);
+    } else if (contact.nama.toLowerCase() != nama.toLowerCase() && i === contacts.length - 1) {
+      console.log(`TIDAK ADA KONTAK DENGAN NAMA ${nama}!!!`);
+    }
+  });
+};
+
+module.exports = { simpanContact, listContacts, detailContact };

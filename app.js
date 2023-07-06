@@ -41,5 +41,21 @@ yargs.command({
   },
 });
 
+// menampilkan detail kontak
+yargs.command({
+  command: "detail",
+  describe: "menampilkan detail kontak",
+  builder: {
+    nama: {
+      describe: "nama kontak yang dicari",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    contacts.detailContact(argv.nama);
+  },
+});
+
 // buat jalanin
 yargs.parse();
