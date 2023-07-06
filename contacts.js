@@ -82,4 +82,16 @@ const detailContact = (nama) => {
   }
 };
 
-module.exports = { simpanContact, listContacts, detailContact };
+// hapus kontak
+const hapusContact = (nama) => {
+  const contacts = loadContacts();
+  const contactsFilter = contacts.filter((contact) => contact.nama.toLowerCase() !== nama.toLowerCase());
+
+  contacts.length === contactsFilter.length 
+  ? console.log(chalk.red.bold.inverse(`TIDAK ADA PENGGUNA DENGAN NAMA ${nama}`)) 
+  : console.log(chalk.green.bold.inverse(`Kontak pengguna dengan nama ${nama}, berhasil dihapus`));
+
+  fs.writeFileSync("./data/contact.json", JSON.stringify(contactsFilter));
+};
+
+module.exports = { simpanContact, listContacts, detailContact, hapusContact };

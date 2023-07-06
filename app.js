@@ -57,5 +57,21 @@ yargs.command({
   },
 });
 
+// hapus kontak
+yargs.command({
+  command: "hapus",
+  describe: "menghapus kontak yang dicari",
+  builder: {
+    nama: {
+      describe: "nama kontak yang dicari",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    contacts.hapusContact(argv.nama);
+  },
+});
+
 // buat jalanin
 yargs.parse();
