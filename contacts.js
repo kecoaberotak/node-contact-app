@@ -1,4 +1,6 @@
 const fs = require('node:fs');
+const chalk = require('chalk');
+const validator = require('validator');
 
 // check directory dan membuat folder data
 const dirPath = './data';
@@ -23,9 +25,15 @@ const simpanContact = (nama, email, noHp) => {
   // Cek duplikasi
   const duplikat = contacts.find(contact => contact.nama === nama);
   if(duplikat){
-    console.log('Nama sudah terdaftar, gunakan nama lain!!!');
+    console.log(chalk.red.bold.inverse('Nama sudah terdaftar, gunakan nama lain!!!'));
     return false;
   };
+
+  // cek email
+  if(!validator.isEmail(email)){
+    console.log(chalk.red.bold.inverse('Gunakan email yang valid!!!'));
+    return false;
+  }
 
   contacts.push(contact);
 
