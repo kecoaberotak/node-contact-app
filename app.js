@@ -1,16 +1,11 @@
 const yargs = require('yargs');
-const contacts = require('./contacts');
+const simpanContact = require('./contacts');
 
 // syntax yargs
 // .command(cmd, desc, [builder], [handler])
 
-// cara 1
-// yargs.command('add', 'Menambahkan contact baru', () => {}, (argv) => {
-//   console.log(argv.nama);
-// });
 
-
-// Versi 2
+// Versi 2 - pake yargs
 yargs.command({
   command   : 'add',
   describe  : 'Menambahkan contact',
@@ -32,21 +27,9 @@ yargs.command({
     }
   },
   handler : function (argv) {
-    contacts.simpanContact(argv.nama, argv.email, argv.noHp);
+    simpanContact(argv.nama, argv.email, argv.noHp);
   },
 });
 
 // buat jalanin
 yargs.parse();
-
-
-// Versi 1
-const main = async () => {
-  const nama = await contacts.pertanyaan('Nama');
-  const email = await contacts.pertanyaan('Email');
-  const noHp = await contacts.pertanyaan('Nomor Handphone');
-
-  contacts.simpanContact(nama, email, noHp);
-};
-
-main();
