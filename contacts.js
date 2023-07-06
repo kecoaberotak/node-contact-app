@@ -17,6 +17,7 @@ if(!fs.existsSync(filePath)){
 
 const simpanContact = (nama, email, noHp) => {
   // karena key dan valuenya sama, nulisnya gini
+  if(email === undefined){}
   const contact = {nama , email, noHp};
   const bacaFile = fs.readFileSync('./data/contact.json', 'utf-8');
 
@@ -30,9 +31,11 @@ const simpanContact = (nama, email, noHp) => {
   };
 
   // cek email
-  if(!validator.isEmail(email)){
-    console.log(chalk.red.bold.inverse('Gunakan email yang valid!!!'));
-    return false;
+  if(email != undefined){
+    if(!validator.isEmail(email)){
+      console.log(chalk.red.bold.inverse('Gunakan email yang valid!!!'));
+      return false;
+    }
   }
 
   // cek nomor hp indo
@@ -44,6 +47,7 @@ const simpanContact = (nama, email, noHp) => {
   contacts.push(contact);
 
   fs.writeFileSync('./data/contact.json', JSON.stringify(contacts));
+  console.log(chalk.green.bold.inverse('Terima kasih sudah memasukkan data anda'));
 };
 
 module.exports = simpanContact;
