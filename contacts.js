@@ -35,6 +35,12 @@ const simpanContact = (nama, email, noHp) => {
     return false;
   }
 
+  // cek nomor hp indo
+  if(!validator.isMobilePhone(noHp, 'id-ID')){
+    console.log(chalk.red.bold.inverse('Gunakan nomor telepon Indonesia!!!'));
+    return false;
+  }
+
   contacts.push(contact);
 
   fs.writeFileSync('./data/contact.json', JSON.stringify(contacts));
