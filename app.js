@@ -1,5 +1,7 @@
 // mengambil argument dari command line
+// console.log(process.argv);
 
+// pake yargs
 
 
 
