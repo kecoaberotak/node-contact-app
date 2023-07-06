@@ -70,16 +70,16 @@ const listContacts = () => {
 const detailContact = (nama) => {
   const contacts = loadContacts();
 
-  contacts.forEach((contact, i) => {
-    if (contact.nama.toLowerCase() === nama.toLowerCase()) {
-      console.log(chalk.bold.green("Detail Kontak: \n"));
-      if (contact.email === undefined) {
-        console.log(`Nama : ${contact.nama} \nEmail : User ini tidak memiliki email \nNomor Handphone : ${contact.noHp} `);
-      } else console.log(`Nama : ${contact.nama} \nEmail : ${contact.email} \nNomor Handphone : ${contact.noHp} `);
-    } else if (contact.nama.toLowerCase() != nama.toLowerCase() && i === contacts.length - 1) {
-      console.log(`TIDAK ADA KONTAK DENGAN NAMA ${nama}!!!`);
-    }
-  });
+  const contact = contacts.find((contact) => contact.nama.toLowerCase() === nama.toLowerCase());
+
+  if (!contact) {
+    console.log(chalk.red.bold.inverse(`TIDAK ADA PENGGUNA DENGAN NAMA ${nama}`));
+  } else if (contact) {
+    console.log(chalk.bold.green("Detail Kontak: \n"));
+    contact.email === undefined
+      ? console.log(`Nama : ${contact.nama} \nEmail : pengguna ini tidak memasukkan email\nNomor Handphone : ${contact.noHp} `)
+      : console.log(`Nama : ${contact.nama} \nEmail : ${contact.email}\nNomor Handphone : ${contact.noHp} `);
+  }
 };
 
 module.exports = { simpanContact, listContacts, detailContact };
