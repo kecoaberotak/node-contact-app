@@ -21,7 +21,7 @@ const loadContacts = () => {
   return contacts;
 };
 
-// simpan contact ke json
+// Add
 const simpanContact = (nama, email, noHp) => {
   // karena key dan valuenya sama, nulisnya gini
   if (email === undefined) {
@@ -56,7 +56,7 @@ const simpanContact = (nama, email, noHp) => {
   console.log(chalk.green.bold.inverse("Terima kasih sudah memasukkan data anda"));
 };
 
-// Tampil list nama dan nomor hp
+// List
 const listContacts = () => {
   const contacts = loadContacts();
 
@@ -66,7 +66,7 @@ const listContacts = () => {
   });
 };
 
-// tampil detail
+// Detail
 const detailContact = (nama) => {
   const contacts = loadContacts();
 
@@ -82,7 +82,7 @@ const detailContact = (nama) => {
   }
 };
 
-// hapus kontak
+// Hapus
 const hapusContact = (nama) => {
   const contacts = loadContacts();
   const contactsFilter = contacts.filter((contact) => contact.nama.toLowerCase() !== nama.toLowerCase());
